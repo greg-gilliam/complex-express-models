@@ -30,7 +30,7 @@ describe('animal routes', () => {
       .get('/api/animals/1')
       .then((res) => {
         expect(res.body).toEqual({
-          id: 1,
+          id: '1',
           animalName: 'dog',
           extinct: false,
         });
