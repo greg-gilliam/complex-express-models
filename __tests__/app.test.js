@@ -36,4 +36,17 @@ describe('animal routes', () => {
         });
       });
   });
+
+  it('should PATCH an animal by id', () => {
+    return request(app)
+      .patch('/api/animals/1')
+      .send({ animalName: 'dogbird', extinct: false })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          animalName: 'dogbird',
+          extinct: false,
+        });
+      });
+  });
 });
