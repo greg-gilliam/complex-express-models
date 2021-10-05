@@ -24,4 +24,16 @@ describe('animal routes', () => {
         });
       });
   });
+
+  it('should GET an animal by id', () => {
+    return request(app)
+      .get('/api/animals/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: 1,
+          animalName: 'dog',
+          extinct: false,
+        });
+      });
+  });
 });
