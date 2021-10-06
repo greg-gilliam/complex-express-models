@@ -50,7 +50,7 @@ describe('animal routes', () => {
       });
   });
 
-  it.only('should DELETE an animal by id', () => {
+  it('should DELETE an animal by id', () => {
     return request(app)
       .delete('/api/animals/1')
       .then((res) => {
@@ -60,5 +60,12 @@ describe('animal routes', () => {
           extinct: false,
         });
       });
+  });
+
+  it('should ADD species', () => {
+    return request(app).post('/api/species').send({
+      animalId: '1',
+      speciesName: 'enormous',
+    });
   });
 });
