@@ -8,10 +8,6 @@ describe('animal routes', () => {
     return setup(pool);
   });
 
-  afterAll(() => {
-    pool.end();
-  });
-
   it('creates a new animal', () => {
     return request(app)
       .post('/api/animals')
@@ -68,17 +64,49 @@ describe('animal routes', () => {
       speciesName: 'enormous',
     });
   });
-});
 
-it('should GET ALL species', () => {
-  return request(app)
-    .get('/api/species')
-    .then((res) => {
-      expect(res.body).toEqual([
-        {
-          animalId: '1',
-          speciesName: 'mammal',
-        },
-      ]);
-    });
+  it.only('should GET ALL species', () => {
+    return request(app)
+      .get('/api/species')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            animalId: '1',
+            id: '1',
+            speciesName: 'mammal',
+          },
+          {
+            animalId: '2',
+            id: '2',
+            speciesName: 'bird',
+          },
+          {
+            animalId: '3',
+            id: '3',
+            speciesName: 'mammal',
+          },
+          {
+            animalId: '4',
+            id: '4',
+            speciesName: 'mammal',
+          },
+        ]);
+      });
+  });
+
+  it('should GET ALL animals and their species', () => {
+    return request(app)
+      .get('/api/animals/species')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            animalName: 'dog',
+            speciesName: 'mammal',
+          },
+        ]);
+      });
+  });
+  afterAll(() => {
+    pool.end();
+  });
 });

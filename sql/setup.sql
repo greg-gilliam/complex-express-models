@@ -11,8 +11,9 @@ INSERT INTO animals (animal_name, extinct)
 
 CREATE TABLE species (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    animal_id TEXT NOT NULL,
+    animal_id BIGINT NOT NULL,
+    FOREIGN KEY (animal_id) REFERENCES animals(id), 
     species_name TEXT NOT NULL 
 );
 INSERT INTO species (animal_id, species_name)
-    VALUES ('dog', 'mammal'), ('carolina parakeet', 'bird'), ('cat', 'mammal'), ('bigfoot', 'mammal');
+    VALUES (1, 'mammal'), (2, 'bird'), (3, 'mammal'), (4, 'mammal');
