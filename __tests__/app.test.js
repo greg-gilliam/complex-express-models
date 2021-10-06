@@ -49,4 +49,16 @@ describe('animal routes', () => {
         });
       });
   });
+
+  it.only('should DELETE an animal by id', () => {
+    return request(app)
+      .delete('/api/animals/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          animalName: 'dog',
+          extinct: false,
+        });
+      });
+  });
 });
