@@ -69,3 +69,16 @@ describe('animal routes', () => {
     });
   });
 });
+
+it('should GET ALL species', () => {
+  return request(app)
+    .get('/api/species')
+    .then((res) => {
+      expect(res.body).toEqual([
+        {
+          animalId: '1',
+          speciesName: 'mammal',
+        },
+      ]);
+    });
+});
