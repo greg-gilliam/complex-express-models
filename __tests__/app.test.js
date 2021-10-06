@@ -37,9 +37,9 @@ describe('animal routes', () => {
       });
   });
 
-  it('should PATCH an animal by id', () => {
+  it('should UPDATE an animal by id', () => {
     return request(app)
-      .patch('/api/animals/1')
+      .put('/api/animals/1')
       .send({ animalName: 'dogbird', extinct: false })
       .then((res) => {
         expect(res.body).toEqual({
